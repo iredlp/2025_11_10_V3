@@ -25,26 +25,25 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         self._ddStore = ft.Dropdown(label="Store", width=250)
+        self._controller.fillDDStores()
         self._txtIntK = ft.TextField(label="K", width=100)
         self._ddNode = ft.Dropdown(label="Node", width=150, disabled=True)
 
         row1 = ft.Row([self._ddStore, self._txtIntK, self._ddNode], alignment=ft.MainAxisAlignment.CENTER,
                       vertical_alignment=ft.CrossAxisAlignment.END)
 
-        self._controller.fillDDStore()
-
         self._btnCreaGrafo = ft.ElevatedButton(text="Crea Grafo", on_click=self._controller.handleCreaGrafo)
         self._btnCerca = ft.ElevatedButton(text="Cerca Percorso Massimo",
-                                           on_click=self._controller.handleCerca, disabled=True)
+                                           on_click=self._controller.handleCerca, disabled=False)
         self._btnRicorsione = ft.ElevatedButton(text="Ricorsione",
-                                           on_click=self._controller.handleRicorsione, disabled=True)
+                                           on_click=self._controller.handleRicorsione, disabled=False)
 
         row2 = ft.Row([self._btnCreaGrafo, self._btnCerca, self._btnRicorsione], alignment=ft.MainAxisAlignment.CENTER)
 
         self._page.controls.append(row1)
         self._page.controls.append(row2)
-        self.txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
-        self._page.controls.append(self.txt_result)
+        self._txt_result = ft.ListView(expand=1, spacing=10, padding=20, auto_scroll=True)
+        self._page.controls.append(self._txt_result)
         self._page.update()
 
     @property
